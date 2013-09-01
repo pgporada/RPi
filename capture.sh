@@ -21,23 +21,12 @@ run() {
 
   # Set working dir
   cd /opt/storage/
-
-  if [ -e ".STOP" ] ; then
-      echo -e "${FAIL} .STOP exists"
-      exit 2
-  else
-      echo -e "${PASS} $(basename $0) started"
-  fi
+  echo -e "${PASS} Locked - ${PID}"
+  echo -e "${PASS} $(basename $0) started"
   
   # Main script
   while true
   do
-      # If this exists, then don't run the script anymore
-      if [ -e ".STOP" ] ; then
-          echo -e "${FAIL} .STOP exists"
-          exit 2
-      fi
-
       # Set here because TODAY will eventually change, this thing is meant to keep running for days
       IMAGE=$(date +"%Y%m%d.%H%M%S").jpg
       TODAY=$(date +%Y_%m_%d)

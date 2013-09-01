@@ -1,11 +1,12 @@
 #!/bin/bash
+# Author: Phil Porada
 TODAY=$(date +%Y_%m_%d)
 YESTERDAY=$(date -d "1 day ago" +%Y_%m_%d)
 
 cd /opt/storage/
 
 # Remove old folders/files
-find .  -maxdepth 2 -type d ! -type l -mtime +22 -exec rm -rf {} \;
+find .  -maxdepth 2 -type d ! -type l -mtime +31 -exec rm -rf {} \;
 
 # If todays dir doesn't exist then make it
 if [ ! -d "${TODAY}/" ] ; then
@@ -21,4 +22,5 @@ if [ ! -d "${TODAY}/" ] ; then
     else
         ln -s ${TODAY} current
     fi
+
 fi
